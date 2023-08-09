@@ -18,14 +18,14 @@
 	<div id="header">
 		<h1 class="logo"><a href="#">LOGO</a></h1>
 		
-		<dl class="topav">
-			<dt>top navigation</dt>
+		<dl class="topnav">
+			<dt class="blind">top navigation</dt>
 			<dd><a href="#">Login</a></dd>
 			<dd><a href="#">Member join</a></dd>
 			<dd><a href="#">Sitemap</a></dd>
 		</dl>
 		
-		<h2>main navigation</h2>
+		<h2 class="blind">main navigation</h2>
 		<ul class="mainnav">
 			<li><a href="#">About</a></li>
 			<li><a href="#">Services</a></li>
@@ -47,9 +47,9 @@
 		<hr>
 		<div id="content">
 			<p class="locate">
-				<a href="#">Home</a>
-				<a href="#">About</a>
-				<a href="#">Company Info</a>
+				<a href="#">Home</a> &gt;
+				<a href="#">About</a> &gt;
+				<strong>Company Info</strong>
 			</p>
 			
 			<h2>Company Info</h2>
@@ -57,6 +57,7 @@
 				<img src="../image/treethum.png" alt="tree thumnail photo">
 			</p>
 			
+			<div class="text">
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, ea, impedit ut 
 			perspiciatis assumenda ipsam minus veritatis tenetur nisi commodi laboriosam 
 			quae sint nulla? Obcaecati, corrupti, placeat, quasi repudiandae deleniti quod 
@@ -67,6 +68,7 @@
 			expedita, aperiam, sint omnis fuga magnam eos quidem alias soluta nobis sunt 
 			unde incidunt! Ratione, autem eligendi molestiae saepe et numquam facilis 
 			pariatur voluptates ipsum!</p>
+			
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, velit illum 
 			omnis ipsam quibusdam blanditiis iusto obcaecati nihil ab in! Iure, natus, magni, 
 			similique aut laudantium omnis a non quisquam aliquid numquam libero pariatur 
@@ -79,6 +81,7 @@
 			dignissimos quidem aperiam vel corporis iure nam laboriosam ratione perspiciatis. 
 			Ut, repellendus numquam aspernatur voluptatum doloremque blanditiis quis quam 
 			quisquam aperiam illo impedit similique accusamus at.</p>
+			</div><!-- P태그 -->
 		</div><!-- content -->
 		
 	</div><!-- container -->
@@ -86,7 +89,7 @@
 	
 	<div id="footer">
 		<dl class="btmnav">
-			<dt>bottom navigation</dt>
+			<dt class="blind">bottom navigation</dt>
 			<dd><a href="#">About</a></dd>
 			<dd><a href="#">Services</a></dd>
 			<dd><a href="#">Portfolio</a></dd>
@@ -96,7 +99,8 @@
 		
 		<p class="copy">
 			Copyright &copy; COMPANY Design<br>
-			Powered by Webazit, e-mail : webmaster@company.com
+			Powered by Webazit, e-mail : <a href="webmaster@company.com">webmaster@company.com</a>
+			
 		</p>
 	</div><!-- footer -->
 </div><!-- wrap -->
