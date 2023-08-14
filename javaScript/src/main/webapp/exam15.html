@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>10 + 50 = <span id = "question">?</span></h1>
+<input type="button" value="결과보기" onclick="printResult()"/>
+
+<script type="text/javascript">
+function sum(x , y){
+	return x + y;
+	
+}
+
+function printResult(){
+	var result = sum(10, 50);
+
+	var myTag = document.getElementById("question");
+	//alert(myTag);
+	//alert(myTag.tagName); //SPAN
+	
+	//myTag.innerText = "<font color='red'>" + result + "</font>";
+	myTag.innerHTML = "<font color='red'>" + result + "</font>";
+
+}
+</script>
+
+
+</body>
+</html>
