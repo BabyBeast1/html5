@@ -21,6 +21,16 @@
   </servlet-mapping>
   
   
+  <servlet>
+  	<servlet-name>CalcServlet</servlet-name>
+  	<servlet-class>com.calc.CalcServlet</servlet-class>
+  </servlet>
+   	<servlet-mapping>
+  	<servlet-name>CalcServlet</servlet-name>
+  	<url-pattern>/CalcServlet</url-pattern>
+  </servlet-mapping>
+  
+  
   
   
   

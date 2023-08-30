@@ -29,6 +29,11 @@ public class ParamServlet extends HttpServlet {
 		out.println("나의 이름은 " + name + "이고, 내 나이는" + age + "살 이므로");
 		if(age>=19) out.println("<font color = 'red'>성인</font> 입니다.");
 		else out.println("<font color = 'red'>청소년</font> 입니다.");
+		
+		out.println("<br/><br/>");
+//		out.println("<input type='button' value='뒤로' onclick='history.go(-1)'>");
+		out.println("<input type='button' value='뒤로' onclick=location.href='http://localhost:8080/testServlet/param/param.html'>");
+		
 		out.println("</body>");
 		out.println("</html>");
 		
