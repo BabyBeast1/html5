@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+table {
+	width : 500px;
+	height : 450px;
+}
+table #name1{
+	height : 15px;
+	width : 70px; 
+}
+table #name {
+	width : 130px;
+}
+table #email1{
+	height : 15px;
+	width : 70px;
+}
+table #email {
+	width : 150px;
+}
+table #website1{
+
+	height : 15px;
+}
+table #website{
+	width : 200px;
+}
+table #title1 {
+	height : 15px;
+	width : 70px;
+}
+table #title {
+	width : 400px;
+}
+table #content {
+	width :400px;
+	height : 550px;
+}
+</style>
+</head>
+<body>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+<form name="guestbookForm" id="guestbookForm" method="get" 
+	  action="/guestbookServlet/GuestbookWriteServlet">
+	<table border="1" cellpadding="5" cellspacing ="0">
+		<tr>
+			<th id="name1">작성자</th>
+				<td>
+					<input type="text" name="name" id="name" maxlength="5" placeholder="작성자 입력"/>
+					<div id="nameDiv"></div>
+				</td>
+		</tr>
+		
+		<tr>
+			<th id="email1">이메일</th>
+				<td>
+					<input type="text" name="email" id="email" placeholder="이메일 입력" >
+					<div id="emailDiv"></div>
+				</td>
+		</tr>
+		
+		<tr>
+			<th id="website1">홈페이지</th>
+				<td>
+					<input type="text" name="website" id="website" value="http://" >
+					<div id="websiteDiv"></div>
+				</td>
+		</tr>
+		
+		<tr>
+			<th id="title1">제 목</th>
+				<td>
+					<input type="text" name="title" id="title" placeholder="제목 입력">
+					<div id="titleDiv"></div>
+				</td>
+		</tr>
+		
+		<tr>
+			<th id="content1">내 용</th>
+				<td>
+					<input type="text" name="content" id="content" rows="15" cols="50">
+					<div id="contentDiv"></div>
+				</td>
+		</tr>
+		
+		<tr>
+			<td colspan="2" align="center">
+				<input type="button" value="글작성" id="writeBtn">
+				<input type="button" value="목록" onclick="location.href='/guestbookServlet/GuestbookListServlet?pg=1'" />
+				<input type="reset" value="다시작성">
+			</td>
+		</tr>
+	</table>
+</form>
+
+<script type="text/javascript">
+$('#writeBtn').click(function(){
+	$('#titleDiv').text('');
+	$('#contentDiv').empty();
+	
+	if($('#title').val() == '') 
+		$('#titleDiv').text('제목 입력'); 
+	else if($('#content').val() == '') 
+		$('#contentDiv').text('내용 입력');
+	else 
+		$('#guestbookForm').submit();
+	
+});
+</script>
+</body>
+</html>
