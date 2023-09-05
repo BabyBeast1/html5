@@ -6,41 +6,38 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import member.dto.MemberDTO;
 
-public class MemberDAO {
-
-	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	private String username = "c##java";
-	private String password = "1234";
-	
-	
+public class MemberDAO {	
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
+	private DataSource ds;
+	
 	public MemberDAO() {
-		try{
-			Class.forName(driver);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-	public void getConnection() {
 		try {
-			conn = DriverManager.getConnection(url, username, password);
-		} catch (SQLException e) {
+			Context context = new InitialContext();
+			ds = (DataSource)context.lookup("java:comp/env/jdbc/oracle");  //Tomcat 일 경우에만 java:comp/env 가 붙음 
+			
+		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	
 	public boolean isExistId(String id){
 		boolean exist = false;
 		String sql = "select * from member where id = ?";
-		getConnection();
 		
 		try {
+			conn = ds.getConnection(); //DataSource로 부터 커넥션을 가져온다.
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
@@ -64,9 +61,10 @@ public class MemberDAO {
 	
 	public void write(MemberDTO memberDTO) {
 		String sql = "insert into member values(? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,sysdate)";
-		getConnection();
 		
 		try {
+			conn = ds.getConnection();
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,  memberDTO.getName());
 			pstmt.setString(2,  memberDTO.getId());
@@ -96,12 +94,13 @@ public class MemberDAO {
 		}
 	}
 	
-	public String login(String id, String pwd){
-		String name = null;
+	public MemberDTO login(String id, String pwd){
+		MemberDTO memberDTO = null;
 		String sql ="select * from member where id=? and pwd=?";
-		getConnection();
 		
 		try {
+			conn = ds.getConnection();
+			
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, id);
@@ -110,7 +109,19 @@ public class MemberDAO {
 			rs= pstmt.executeQuery();
 			
 			if(rs.next()) {
-				name = rs.getString("name");
+				memberDTO = new MemberDTO();
+				memberDTO.setName(rs.getString("name"));
+				memberDTO.setId(rs.getString("id"));
+				memberDTO.setPwd(rs.getString("pwd"));
+				memberDTO.setGender(rs.getString("gender"));
+				memberDTO.setEmail1(rs.getString("email1"));
+				memberDTO.setEmail2(rs.getString("email2"));
+				memberDTO.setTel1(rs.getString("tel1"));
+				memberDTO.setTel2(rs.getString("tel2"));
+				memberDTO.setTel3(rs.getString("tel3"));
+				memberDTO.setZipcode(rs.getString("zipcode"));
+				memberDTO.setAddr1(rs.getString("addr1"));
+				memberDTO.setAddr2(rs.getString("addr2"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -124,7 +135,7 @@ public class MemberDAO {
 			}
 		}
 		
-		return name;
+		return memberDTO;
 	}
 }
 

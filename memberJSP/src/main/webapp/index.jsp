@@ -15,9 +15,9 @@
 
 <% }else{ %>
 	<h3><a href="./member/logout.jsp">로그아웃</a></h3>
-	<h3><a href="./member/boardWriteForm.jsp">글쓰기</a></h3>
+	<h3><a href="./board/boardWriteForm.jsp">글쓰기</a></h3>
 
 <%} %>
-	<h3><a href="">목록</a></h3>
+	<h3><a href="./board/boardList.jsp?pg=1">목록</a></h3>
 </body>
 </html>

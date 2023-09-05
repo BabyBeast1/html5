@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="member.dao.MemberDAO"%>
 <%@ page import="java.net.URLEncoder"%>
+<%@ page import="member.dto.MemberDTO"%>
+<%@ page import="member.dao.MemberDAO"%>
 <%
 //데이터
 
@@ -10,7 +11,7 @@ String pwd = request.getParameter("pwd");
 
 //DB
 MemberDAO memberDAO = new MemberDAO();
-String name = memberDAO.login(id, pwd);
+MemberDTO memberDTO = memberDAO.login(id, pwd);
 %>
 <!DOCTYPE html>
 <html>
@@ -20,7 +21,7 @@ String name = memberDAO.login(id, pwd);
 </head>
 <body>
 <form action="login.jsp">
-<%if(name == null) { 
+<%if(memberDTO == null) { 
 	response.sendRedirect("loginFail.jsp");	
 }else{ 
 //	response.sendRedirect("loginOk.jsp?name=" +URLEncoder.encode(name, "UTF-8"));	
@@ -36,8 +37,9 @@ response.addCookie(cookie2);
 */
 //세션
 // HttpSession session = request.getSession(); //세션 생성
- session.setAttribute("memName", name);
+ session.setAttribute("memName", memberDTO.getName());
  session.setAttribute("memId", id);
+ session.setAttribute("memEmail", memberDTO.getEmail1()+"@"+memberDTO.getEmail2());
  
 response.sendRedirect("loginOk.jsp");
 } %>
