@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace ="userSQL">
+
+<!-- 등록 -->
+	<insert id="write" parameterType="user.bean.UserDTO">
+		insert into usertable values(#{name},#{id},#{pwd})
+	</insert>
+	
+	<!-- 출력 -->
+	<select id="getUserList" resultType="user.bean.UserDTO">
+		select * from usertable
+	</select>
+	
+	<!-- 수정 -->
+	<select id="getUser" parameterType="java.lang.String" resultType="user.bean.UserDTO">
+		select * from usertable where id=#{id}
+	</select>
+	
+	<update id="update" parameterType="user.bean.UserDTO">
+		update usertable set name=#{name}, pwd=#{pwd} where id = #{id} 
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="String">
+		delete from usertable where id=#{id}
+	</delete>
+	<!-- 검색 -->
+	<select id="search">
+	  </select>
+	
+	</mapper>
