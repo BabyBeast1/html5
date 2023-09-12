@@ -5,7 +5,8 @@
  <configuration>
  	<properties resource="db.properties"></properties>
  	<typeAliases>
- 		<typeAlias type="user.bean.UserDTO" alias="user"/>
+ 		<typeAlias type="member.dto.MemberDTO" alias="member"/>
+ 		<typeAlias type="board.dto.BoardDTO" alias="board"/>
  	</typeAliases>
  
  	<environments default="development">
@@ -21,6 +22,7 @@
  	</environments>
  	
  	<mappers>
- 		<mapper resource="user/dao/userMapper.xml" />
+ 		<mapper resource="member/dao/memberMapper.xml" />
+ 		<mapper resource="board/dao/boardMapper.xml" />
  	</mappers>
  </configuration>

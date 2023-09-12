@@ -27,6 +27,7 @@ public class BoardListService implements CommandProcess {
 		List<BoardDTO> list = boardDAO.getBoardList(startNum, endNum);
 
 		//페이징 처리
+		
 		int totalA = boardDAO.getTotalA();  // 총글수
 
 		BoardPaging boardPaging = new BoardPaging();
